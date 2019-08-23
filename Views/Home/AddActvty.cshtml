@@ -1,0 +1,33 @@
+@using EXAMcsharp.Models 
+@model Actvty 
+
+
+<h1>Dojo Activity Center</h1>
+
+<h2>Create an Activity!</h2>
+<a asp-action="Logout" asp-controller="Home">Logout</a>
+
+
+
+
+<form asp-action="createactvty" asp-controller="Home" method="post">
+    <span asp-validation-for="Title"></span>
+    <label asp-for="Title">Activity:</label>
+    <input asp-for="Title">
+    <span asp-validation-for="Date"></span>
+    <label asp-for="Date">Date:</label>
+    <input asp-for="Date">
+    <span asp-validation-for="Duration"></span>
+    <label asp-for="Duration">Duration:</label>
+    <input asp-for="Duration">
+    <span asp-validation-for="Coordinator"></span>
+    <label asp-for="Coordinator">Coordinator:</label>
+    <input asp-for="Coordinator">
+    <span asp-validation-for="Description"></span>
+    <span asp-validation-for="Description"></span>
+    <label asp-for="Description">Description:</label>
+    <textarea asp-for="Description"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+

@@ -1,0 +1,21 @@
+
+
+<h1>Dojo Activity Center</h1>
+<a asp-action="Logout" asp-controller="Home">Logout</a>
+
+    <h3>Activity:@ViewBag.myActivity.Title</h3>
+    <h3>Coordinator: @ViewBag.ACoordinator.FirstName</h3>
+    <h3>Description:</h3>
+    <p>@ViewBag.myActivity.Description</p>
+    <h3>Guests:</h3>
+    <ul>
+        @foreach (var p in ViewBag.AllMembers)
+        {
+            <li>@p.User.FirstName</li>
+        }
+    </ul>
+</div>
+
+<a href="/dashboard">Home</a>
+<a href="/delete/@ViewBag.myActivity.ActvtyId">Delete</a>
+

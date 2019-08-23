@@ -1,0 +1,73 @@
+<h1>Dojo Activity Center</h1>
+<h2>Hello, @ViewBag.currentUser.FirstName! </h2>
+<a asp-action="Logout" asp-controller="Home">Logout</a>
+<a href="addactvty">Create an Acitivity!</a>
+
+<table class="List">
+
+    <thead>
+        <tr>
+    <th>Activity</th>
+    <th>Date and Time</th>
+    <th>Duration</th>
+    <th>Coordinator</th>
+
+    <tr>
+    </thead>
+
+    <tbody>
+        @if (ViewBag.AllActivities != null)
+        {
+        @foreach (var act in ViewBag.AllActivities)
+        {
+        <tr>
+        <td><a href="/actvty/@act.ActvtyId">@act.Title</a></td>
+        <td>@act.Date</td>
+            <td>@act.Duration </td>
+                 @if (ViewBag.Creators != null)
+            {
+                @foreach (var creator in ViewBag.Creators)
+            {
+                @if (act.UserId == creator.UserId)
+            {
+                    <td>@creator.FirstName</td>
+            }
+            }
+            }
+        <td>@act.Memberships.Count</td>
+            @if (act.UserId == ViewBag.currentUser.UserId)
+            {
+        <td><a href="/delete/@act.ActvtyId">Delete</a></td>
+        }
+        else
+        {
+        int temp = 0;
+        @foreach (var mem in act.Memberships)
+            {
+                if (mem.User.UserId == ViewBag.currentUser.UserId)
+                {
+                temp = mem.UserId;
+                }
+            }
+        @if (temp == 0)
+        {
+        <td><a href="/attend/@act.ActvtyId">Attend</a></td>
+        }
+        else
+        {
+        <td><a href="/unrsvp/@act.ActvtyId">unrsvp</a></td>
+        }
+        }
+                </tr>
+            }
+        }
+    </tbody>
+    
+    
+
+</table>
+
+
+
+
+
